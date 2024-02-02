@@ -1,0 +1,26 @@
+{% extends 'pages/index.html' %}
+{% load static %}
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+
+
+<div>
+    <h1>Caution</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+     
+       <div class="modal-body py-0 text-secondary">
+       <p>This Item will be permanently deleted. Are you sure you want to delete {{author}}?</p>
+      </div>
+        <div>
+          <button type="submit" class="btn btn-lg btn-info " data-bs-dismiss="modal">Confirm</button>
+          <a class="btn btn-lg btn-danger" href="{% url 'homePage' %}">Cancel</a>
+
+        </div>
+      
+    
+  </div>
+</form>
+
+{% endblock %}

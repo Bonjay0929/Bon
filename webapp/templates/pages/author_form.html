@@ -1,0 +1,83 @@
+{% extends 'pages/index.html' %}
+{% load static %}
+{% block content %}
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+
+<div>
+   
+    <div>
+            <div class="row gutters">
+                <div class="text-black ps-4">
+                    <h6>Personal Details</h6>
+                </div>
+                <div>
+                    <div class="form-group ps-3 ">
+                        <label for="fullName" class="text-black" style=" padding-right:1rem;">Pen Name</label>
+                        {{form.pen_name}}
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group pt-2 ps-3">
+                        <label for="eMail" class="text-black"  style=" padding-right:1rem;">Full Name</label>
+                        {{form.full_name}}
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group pt-2 ps-3">
+                        <label for="phone" class="text-black"  style=" padding-right:2.6rem;">Phone</label>
+                        {{form.phone}}
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group pt-2 ps-3">
+                        <label for="website" class="text-black"  style=" padding-right:3.6rem;">Age</label>
+                        {{form.age}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row gutters">
+          
+                <div>
+                    <div class="form-group pt-2 ps-3">
+                        <label for="Email" class="text-black"  style=" padding-right:3rem;">Email</label>
+                        {{form.email}}
+
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group pt-2 ps-3">
+                        <label for="ciTy" class="text-black"  style=" padding-right:3.2rem; width=100px;">Date</label>
+                        {{form.date_created}}
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group pt-2 ps-3">
+                        <label for="sTate" class="text-black" style="padding-right:20px;">Upload Profile Picture</label>
+                        {{form.profile_picture}}
+                    </div>
+                </div>
+               
+            </div>
+            <div class="row gutters">
+                <div>
+                    <div class="text-right">
+                        <a href= "{% url 'homePage' %}" type="button" id="submit" name="submit" class="btn btn-danger btn-sm">cancel</a>
+                        <button type="submit" id="submit" name="submit" class="btn btn-info btn-sm">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+
+</form>
+
+{% endblock %}

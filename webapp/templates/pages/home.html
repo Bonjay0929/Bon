@@ -1,0 +1,159 @@
+{% extends 'pages/index.html' %}
+{% load static %}
+{% block content %}
+
+<div style="margin-top: 50px;" class="container">
+	<div class = "row">
+
+		<div class = "col">
+			<div class = "col-md">
+				<div class = "card text-center text-black mb-3" id = "total-orders">
+					<div class = "card-header">
+						<h5 class = "card-title">Total Authors</h5>
+					</div>
+					<div class = "card-body">
+						<h3 class = "card-title">{{total_authors}}</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class = "col">
+			<div class="col-md">
+				<div class="card text-center text-black mb-3" id = "total-delivered">
+					<div class = "card-header">
+						<h5 class = "card-title">Book</h5>
+					</div>
+					<div class = "card-body">
+						<h3 class = "card-title">{{total_books}}</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class = "col">
+			<div class="col-md">
+				<div class="card text-center text-black mb-3" id = "total-pending">
+					<div class = "card-header">
+						<h5 class = "card-title">Contract Accepted</h5>
+					</div>
+					<div class = "card-body">
+						<h3 class = "card-title">{{accepted}}</h3>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class = "col">
+			<div class="col-md">
+				<div class="card text-center text-black mb-3" id = "total-pending">
+					<div class = "card-header">
+						<h5 class = "card-title">Contract Pending</h5>
+					</div>
+					<div class = "card-body">
+						<h3 class = "card-title">{{pending}}</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+<div class="container bg-dark">
+    <div class="row">
+
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 text-info">Authors</h5>
+					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+						
+                    <a href="{% url 'createAuthorPage' %}" class="btn btn-info">Create Authors</a>
+                    
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="table table-hover table-dark table mx-auto d-bloc">
+						
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Created Date</th>
+                                <th class="text-end">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+								{% for a in author %}
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{ authors.profile_picture.url }}" class="avatar sm rounded-pill me-3 flex-shrink-0" alt="Author">
+                                        <div>
+                                            <div class="h6 mb-0 lh-1 text-white">{{a.pen_name}}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-white">{{a.email}}</td>
+                                <td> <span class="d-inline-block align-middle text-white">{{a.phone}}</span></td>
+                                <td class="text-white">{{a.date_created}}</td>
+                                <td class="text-end">
+
+									<div class="dropdown">
+										<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+										  Action
+										</button>
+										<ul class="dropdown-menu">
+										  <li><a class="dropdown-item" href="{% url 'profilePage' a.id %}">View Details</a></li>
+										  <li><a class="dropdown-item" href="{% url 'updateAuthor' a.id %}">Edit Author</a></li>
+										  <li><a class="dropdown-item" href="{% url 'deleteAuthor' a.id %}">Delete Author</a></li>
+										</ul>
+									</div>
+                                </td>
+                            </tr>
+							{% endfor %}
+                        </tbody>
+                    </table>
+        </div>
+    </div>
+</div>
+	<div class="container bg-dark py-5">
+		<div class="main-body">
+		<div class="row mb-4">
+		  <div class="col-lg-5">
+			<h2 class="display-4 font-weight-light text-white">Author Profile</h2>
+			
+		  </div>
+		</div>
+		<div class="row text-center mx-auto">
+			{% for author in author %}
+				<div class="col-xl-3 col-sm-6 mb-5">
+					<div class="bg-white rounded shadow-sm py-5 px-4">
+						<img src="{{ authors.profile_picture.url }}" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+						<h5 class="mb-0">{{ author.pen_name }}</h5>
+						<span class="small text-uppercase text-muted">
+							<ul class="social mb-0 list-inline mt-3">
+								{% for genre in author.genre.all %}
+									<li class="list-inline-item">{{ genre.name }}</li>
+								{% endfor %}
+							</ul>
+						</span>
+						<ul class="social mb-0 list-inline mt-3">
+							<li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
+							<li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-twitter"></i></a></li>
+							<li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-instagram"></i></a></li>
+							<li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		  <!-- End-->
+		</div>
+	  </div>
+	</div>
+	
+
+{% endblock %}
